@@ -41,3 +41,11 @@ curl --location --request POST 'localhost:8080/upload' \
 - `invalid-data.csv`: CSV file with invalid fields, import cannot be completed and upload status will be `ERROR`.
 
 This files are located in the `csv_files` folder
+
+### Debits
+- implement refresh token;
+- improve test coverage
+- implement integration tests
+- list contacts
+- error logs
+- list imports
