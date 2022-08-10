@@ -1,0 +1,18 @@
+version: '3'
+
+volumes:
+  mysql_data:
+    driver: local
+
+services:
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: contacts
+      MYSQL_USER: koombea
+      MYSQL_PASSWORD: pwd#123
+    ports:
+      - "3306:3306"
