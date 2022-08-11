@@ -29,10 +29,9 @@ public class ContactValidatorServiceTest {
     public void shouldThrowExceptionWhenNameIsInvalid() {
         var contact = getValidContact();
         contact.setName("Paulo Corrêa");
-        var contacts = List.of(contact);
 
         InvalidFieldException exception = Assertions.assertThrows(InvalidFieldException.class, () -> {
-            contactValidatorService.validateContacts(contacts);
+            contactValidatorService.validateContact(contact);
         });
     }
 
@@ -40,10 +39,9 @@ public class ContactValidatorServiceTest {
     public void shouldThrowExceptionWhenPhoneIsInvalid() {
         var contact = getValidContact();
         contact.setPhone("+00 (00) 0 0000-0000");
-        var contacts = List.of(contact);
 
         InvalidFieldException exception = Assertions.assertThrows(InvalidFieldException.class, () -> {
-            contactValidatorService.validateContacts(contacts);
+            contactValidatorService.validateContact(contact);
         });
     }
 
@@ -51,10 +49,9 @@ public class ContactValidatorServiceTest {
     public void shouldThrowExceptionWhenDateOfBirthIsInvalid() {
         var contact = getValidContact();
         contact.setDateOfBirth("12-12-2012");
-        var contacts = List.of(contact);
 
         InvalidFieldException exception = Assertions.assertThrows(InvalidFieldException.class, () -> {
-            contactValidatorService.validateContacts(contacts);
+            contactValidatorService.validateContact(contact);
         });
     }
 
@@ -62,10 +59,9 @@ public class ContactValidatorServiceTest {
     public void shouldThrowExceptionWhenEmailIsInvalid() {
         var contact = getValidContact();
         contact.setEmail("Arnold.Schwarzenegger.com");
-        var contacts = List.of(contact);
 
         InvalidFieldException exception = Assertions.assertThrows(InvalidFieldException.class, () -> {
-            contactValidatorService.validateContacts(contacts);
+            contactValidatorService.validateContact(contact);
         });
     }
 

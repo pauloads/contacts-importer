@@ -11,10 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "contacts")
+@Table(name = "contacts", uniqueConstraints = {@UniqueConstraint(columnNames = {"email", "user_id"})})
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -43,4 +44,7 @@ public class Contact {
 
     @ManyToOne
     private User user;
+
+    @Column(name = "credit_card_hash")
+    private String creditCardHash;
 }

@@ -17,14 +17,11 @@ public class ContactValidatorService {
     private static final Pattern DATE_OF_BIRTH_PATTERN = Pattern.compile("(\\d{8})|(\\d{4}-\\d{2}-\\d{2})");
     private static final Pattern EMAIL_PATTERN = Pattern.compile("\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b");
 
-    public void validateContacts(List<Contact> contacts) {
-        contacts.stream().forEach(contact -> {
-            validate("phone", contact.getPhone(), PHONE_PATTERN);
-            validate("name", contact.getName(), NAME_PATTERN);
-            validate("dateOfBirth", contact.getDateOfBirth(), DATE_OF_BIRTH_PATTERN);
-            validate("email", contact.getEmail(), EMAIL_PATTERN);
-        });
-
+    public void validateContact(Contact contact) {
+        validate("phone", contact.getPhone(), PHONE_PATTERN);
+        validate("name", contact.getName(), NAME_PATTERN);
+        validate("dateOfBirth", contact.getDateOfBirth(), DATE_OF_BIRTH_PATTERN);
+        validate("email", contact.getEmail(), EMAIL_PATTERN);
     }
 
     private void validate(String fieldName, String fieldValue, Pattern pattern) {

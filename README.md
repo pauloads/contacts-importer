@@ -13,7 +13,7 @@ All endpoints are protected by JWT, in order to access them you will need to reg
     "email": "freddie.mercury@koombea.com",
     "password": "pwd#123"
 }
-//by the way, this is the default user of the app (it will be creste on application start
+//by the way, this is the default user of the app (it will be created on application start)
 ```
 
 - `[POST] localhost:8080/login`: Using valid email and password, generates a JWT token, which the user can use to get access to the endpoints:
@@ -49,3 +49,4 @@ This files are located in the `csv_files` folder
 - list contacts
 - error logs
 - list imports
+- more csv files for different scenarios

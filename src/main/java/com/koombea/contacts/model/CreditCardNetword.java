@@ -1,7 +1,5 @@
 package com.koombea.contacts.model;
 
-import java.util.regex.Pattern;
-
 public enum CreditCardNetword {
     VISA("^4[0-9]{15}$"),
     MASTERCARD("^5[1-5][0-9]{14}$"),
