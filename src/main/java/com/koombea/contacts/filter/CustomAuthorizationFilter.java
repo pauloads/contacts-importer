@@ -28,10 +28,11 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
 
     private static final String LOGIN_PATH = "/login";
     public static final String BEARER_TOKEN_PREFIX = "Bearer ";
+    private static final String USER_REGISTRATION_PATH = "/users";
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        if (request.getServletPath().equals(LOGIN_PATH)) {
+        if (request.getServletPath().equals(LOGIN_PATH) || isUserRegistration(request)) {
             filterChain.doFilter(request, response);
         } else {
             var authorizationHeader = request.getHeader(AUTHORIZATION);
@@ -57,5 +58,9 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
                 filterChain.doFilter(request, response);
             }
         }
+    }
+
+    private boolean isUserRegistration(HttpServletRequest request) {
+        return request.getMethod().equals("POST") && request.getServletPath().equals(USER_REGISTRATION_PATH);
     }
 }

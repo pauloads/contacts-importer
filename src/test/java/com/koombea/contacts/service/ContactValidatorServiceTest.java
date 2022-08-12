@@ -1,14 +1,12 @@
 package com.koombea.contacts.service;
 
-import com.koombea.contacts.exception.InvalidFieldException;
 import com.koombea.contacts.model.Contact;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @ExtendWith(MockitoExtension.class)
 public class ContactValidatorServiceTest {
@@ -26,43 +24,35 @@ public class ContactValidatorServiceTest {
     }
 
     @Test
-    public void shouldThrowExceptionWhenNameIsInvalid() {
+    public void shouldSetContactAsInvalidWhenNameIsInvalid() {
         var contact = getValidContact();
         contact.setName("Paulo Corrêa");
-
-        InvalidFieldException exception = Assertions.assertThrows(InvalidFieldException.class, () -> {
-            contactValidatorService.validateContact(contact);
-        });
+        contactValidatorService.validateContact(contact);
+        assertFalse(contact.isValid());
     }
 
     @Test
-    public void shouldThrowExceptionWhenPhoneIsInvalid() {
+    public void shouldSetContactAsInvalidWhenPhoneIsInvalid() {
         var contact = getValidContact();
         contact.setPhone("+00 (00) 0 0000-0000");
-
-        InvalidFieldException exception = Assertions.assertThrows(InvalidFieldException.class, () -> {
-            contactValidatorService.validateContact(contact);
-        });
+        contactValidatorService.validateContact(contact);
+        assertFalse(contact.isValid());
     }
 
     @Test
-    public void shouldThrowExceptionWhenDateOfBirthIsInvalid() {
+    public void shouldSetContactAsInvalidWhenDateOfBirthIsInvalid() {
         var contact = getValidContact();
         contact.setDateOfBirth("12-12-2012");
-
-        InvalidFieldException exception = Assertions.assertThrows(InvalidFieldException.class, () -> {
-            contactValidatorService.validateContact(contact);
-        });
+        contactValidatorService.validateContact(contact);
+        assertFalse(contact.isValid());
     }
 
     @Test
-    public void shouldThrowExceptionWhenEmailIsInvalid() {
+    public void shouldSetContactAsInvalidWhenEmailIsInvalid() {
         var contact = getValidContact();
         contact.setEmail("Arnold.Schwarzenegger.com");
-
-        InvalidFieldException exception = Assertions.assertThrows(InvalidFieldException.class, () -> {
-            contactValidatorService.validateContact(contact);
-        });
+        contactValidatorService.validateContact(contact);
+        assertFalse(contact.isValid());
     }
 
 }

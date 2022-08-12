@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -53,6 +55,11 @@ public class UploadService {
         upload.setStatus(UploadStatus.PROCESSING);
         upload.setUser(userService.getAuthenticatedUser());
         return uploadRepository.save(upload);
+    }
+
+    public Page<Upload> listAllPaginated(Pageable pageable){
+        var authenticatedUser = userService.getAuthenticatedUser();
+        return uploadRepository.findAllByUser(authenticatedUser, pageable);
     }
 
 }

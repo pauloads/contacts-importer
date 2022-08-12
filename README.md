@@ -46,7 +46,5 @@ This files are located in the `csv_files` folder
 - implement refresh token;
 - improve test coverage
 - implement integration tests
-- list contacts
-- error logs
-- list imports
 - more csv files for different scenarios
+- implement HATEOAS to increase maturity model

@@ -49,9 +49,6 @@ public class FacadeService implements Facade {
             });
             contactService.saveContacts(contacts);
             return uploadService.saveUploadFinishedInfo(upload);
-        } catch (InvalidFieldException ex) {
-            log.error("error during field validation: {}", ex.getMessage());
-            return uploadService.saveUploadFailedInfo(upload, ex.getMessage());
         } catch (DataIntegrityViolationException ex) {
             return uploadService.saveUploadFailedInfo(upload, "Duplicated contact email");
         }

@@ -47,4 +47,9 @@ public class Contact {
 
     @Column(name = "credit_card_hash")
     private String creditCardHash;
+
+    private boolean valid = true;
+
+    @Column(name = "error_message")
+    private String errorMessage;
 }

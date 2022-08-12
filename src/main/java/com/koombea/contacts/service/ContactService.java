@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -23,6 +25,8 @@ import java.util.List;
 public class ContactService {
 
     private final ContactRepository contactRepository;
+
+    private final UserService userService;
 
     public List<Contact> saveContacts(List<Contact> contacts) {
         return contactRepository.saveAll(contacts);
@@ -49,5 +53,15 @@ public class ContactService {
             log.error("error extracting records from file");
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "error extracting records from file");
         }
+    }
+
+    public Page<Contact> listAllValidPaginated(Pageable pageable) {
+        var authenticatedUser = userService.getAuthenticatedUser();
+        return contactRepository.findAllByUserAndValid(authenticatedUser, pageable, true);
+    }
+
+    public Page<Contact> listAllInvalidPaginated(Pageable pageable) {
+        var authenticatedUser = userService.getAuthenticatedUser();
+        return contactRepository.findAllByUserAndValid(authenticatedUser, pageable, false);
     }
 }
