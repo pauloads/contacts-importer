@@ -31,7 +31,7 @@ public class FacadeService implements Facade {
     @Override
     public Upload processUpload(UploadRequest uploadRequest) {
         var upload = uploadService.saveUploadStartedInfo(uploadRequest);
-        var contacts = contactService.extractRecordsFromFile(uploadRequest);
+        var contacts = contactService.extractContactsFromFile(uploadRequest);
         var authenticatedUser = userService.getAuthenticatedUser();
         try {
             contacts.stream().forEach(contact -> {

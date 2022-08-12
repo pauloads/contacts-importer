@@ -28,7 +28,7 @@ public class ContactService {
         return contactRepository.saveAll(contacts);
     }
 
-    public List<Contact> extractRecordsFromFile(UploadRequest upload) {
+    public List<Contact> extractContactsFromFile(UploadRequest upload) {
         try {
             Reader reader = new InputStreamReader(upload.getFile().getInputStream());
             Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(reader);
