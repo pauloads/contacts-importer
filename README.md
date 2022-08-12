@@ -36,6 +36,15 @@ curl --location --request POST 'localhost:8080/upload' \
 --form 'email="email"'
 ```
 
+- `[GET] localhost:8080/contacts?page={pagenumber}`: list successfully imported contacts
+
+
+
+- `[GET] localhost:8080/contacts/invalid?page={pagenumber}`: list contacts imported with errors
+
+
+- `[GET] localhost:8080/upload?page={pagenumber}`: log of uploaded files their respective status
+
 ### Sample files
 - `valid-data.csv`: A valid CSV file which will import all contacts without any errors.
 - `invalid-data.csv`: CSV file with invalid fields, import cannot be completed and upload status will be `ERROR`.
@@ -43,6 +52,7 @@ curl --location --request POST 'localhost:8080/upload' \
 This files are located in the `csv_files` folder
 
 ### Debits
+- background job
 - implement refresh token;
 - improve test coverage
 - implement integration tests
